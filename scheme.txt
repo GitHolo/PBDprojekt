@@ -4,16 +4,14 @@
    - Nazwisko: VARCHAR(50) (maksymalna długość nazwiska)
    - Adres: VARCHAR(100) (maksymalna długość adresu)
    - Numer telefonu: VARCHAR(15) (zakładając międzynarodowy format numeru telefonu)
-   - E-mail: VARCHAR(100) (maksymalna długość adresu e-mail)
 
 2. Tabela "Pracownicy":
    - ID pracownika: INTEGER (zależnie od zakresu, na przykład INT(10))
    - Imię: VARCHAR(50) (maksymalna długość imienia)
    - Nazwisko: VARCHAR(50) (maksymalna długość nazwiska)
-   - Stanowisko: VARCHAR(50) (maksymalna długość nazwy stanowiska)
+   - Stanowisko ID: INT(50)
    - Adres: VARCHAR(100) (maksymalna długość adresu)
    - Numer telefonu: VARCHAR(15) (zakładając międzynarodowy format numeru telefonu)
-   - E-mail: VARCHAR(100) (maksymalna długość adresu e-mail)
    - Data zatrudnienia: DATE
    - Wynagrodzenie: DECIMAL(10,2) (wartość liczbową z dwoma miejscami po przecinku)
 
@@ -27,12 +25,30 @@
    - ID klienta: INTEGER (zależnie od zakresu, na przykład INT(10))
    - ID pracownika: INTEGER (zależnie od zakresu, na przykład INT(10))
    - Data zamówienia: DATETIME
+   - Data rezerwacji: DATETIME
    - Status zamówienia: VARCHAR(20) (maksymalna długość statusu)
-   - Łączna cena: DECIMAL(10,2)
 
-5. Tabela "Pozycje zamówienia":
-   - ID pozycji zamówienia: INTEGER (zależnie od zakresu, na przykład INT(10))
+5. Tabela "Przedmioty":
+   - ID przedmiotu: INT(255)
+   - Nazwa: VARCHAR(50)
+   - Cena: DECIMAL(10,2)
+
+6. Dane Login
+   - ID użytkownika: INTEGER (zależnie od zakresu, na przykład INT(10))
+   - E-mail: VARCHAR(100) (maksymalna długość adresu e-mail)
+   - Hasło: VARCHAR(50)
+   - Data stworzenia: DATETIME
+
+7. IDs
+   - ID użytkownika: INTEGER (zależnie od zakresu, na przykład INT(10))
+   - ID klienta: INTEGER (zależnie od zakresu, na przykład INT(10)) (opt. null)
+   - ID pracownika: INTEGER (zależnie od zakresu, na przykład INT(10)) (opt. null)
+
+8. Stanowiska
+   - Stanowisko ID: INT(50)
+   - Nazwa Stanowiska: VARCHAR(100)
+
+9. Detale zamówienia
    - ID zamówienia: INTEGER (zależnie od zakresu, na przykład INT(10))
-   - Nazwa pozycji: VARCHAR(100) (maksymalna długość nazwy pozycji)
-   - Cena jednostkowa: DECIMAL(10,2)
-   - Ilość: INTEGER
+   - ID przedmiotu: INT(255)
+   - Ilość: INT(10)
