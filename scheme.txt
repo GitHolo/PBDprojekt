@@ -1,0 +1,38 @@
+1. Tabela "Klienci":
+   - ID klienta: INTEGER (zależnie od zakresu, na przykład INT(10))
+   - Imię: VARCHAR(50) (maksymalna długość imienia)
+   - Nazwisko: VARCHAR(50) (maksymalna długość nazwiska)
+   - Adres: VARCHAR(100) (maksymalna długość adresu)
+   - Numer telefonu: VARCHAR(15) (zakładając międzynarodowy format numeru telefonu)
+   - E-mail: VARCHAR(100) (maksymalna długość adresu e-mail)
+
+2. Tabela "Pracownicy":
+   - ID pracownika: INTEGER (zależnie od zakresu, na przykład INT(10))
+   - Imię: VARCHAR(50) (maksymalna długość imienia)
+   - Nazwisko: VARCHAR(50) (maksymalna długość nazwiska)
+   - Stanowisko: VARCHAR(50) (maksymalna długość nazwy stanowiska)
+   - Adres: VARCHAR(100) (maksymalna długość adresu)
+   - Numer telefonu: VARCHAR(15) (zakładając międzynarodowy format numeru telefonu)
+   - E-mail: VARCHAR(100) (maksymalna długość adresu e-mail)
+   - Data zatrudnienia: DATE
+   - Wynagrodzenie: DECIMAL(10,2) (wartość liczbową z dwoma miejscami po przecinku)
+
+3. Tabela "Stoliki":
+   - ID stolika: INTEGER (zależnie od zakresu, na przykład INT(10))
+   - Numer stolika: VARCHAR(10) (maksymalna długość numeru stolika)
+   - Liczba miejsc: INTEGER
+
+4. Tabela "Zamówienia":
+   - ID zamówienia: INTEGER (zależnie od zakresu, na przykład INT(10))
+   - ID klienta: INTEGER (zależnie od zakresu, na przykład INT(10))
+   - ID pracownika: INTEGER (zależnie od zakresu, na przykład INT(10))
+   - Data zamówienia: DATETIME
+   - Status zamówienia: VARCHAR(20) (maksymalna długość statusu)
+   - Łączna cena: DECIMAL(10,2)
+
+5. Tabela "Pozycje zamówienia":
+   - ID pozycji zamówienia: INTEGER (zależnie od zakresu, na przykład INT(10))
+   - ID zamówienia: INTEGER (zależnie od zakresu, na przykład INT(10))
+   - Nazwa pozycji: VARCHAR(100) (maksymalna długość nazwy pozycji)
+   - Cena jednostkowa: DECIMAL(10,2)
+   - Ilość: INTEGER
