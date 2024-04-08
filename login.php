@@ -2,36 +2,7 @@
 <html>
 <head>
     <title>Login</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .login-box {
-            width: 300px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .login-box input[type="text"],
-        .login-box input[type="password"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        .login-box input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    <link href="styles/login.css" rel="stylesheet" />
 </head>
 <body>
     <div class="login-box">
@@ -46,10 +17,13 @@
 </html>
 
 <?php
-$servername = "localhost";
-$username = "root";
+session_start(); 
+
+$servername = "localhost"; 
+$username = "root"; 
 $password = ""; 
 $dbname = "htc"; 
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
@@ -60,15 +34,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM login WHERE email='$email' AND password='$password'";
+    $sql = "SELECT user_ID, email FROM login WHERE email='$email' AND password='$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        $_SESSION['user_ID'] = $row['user_ID'];
+        $_SESSION['email'] = $row['email'];
+
         header("Location: profile.php");
         exit();
     } else {
         echo "<script>alert('Invalid email or password');</script>";
     }
 }
+
 $conn->close();
 ?>
