@@ -17,7 +17,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$user_ID = $_SESSION['user_ID'];
+$user_ID = $_GET['user_ID'];
+
+if (!isset($user_ID) || empty($user_ID)) {
+    echo "User ID not provided.";
+    exit();
+}
 
 $sql = "SELECT * FROM employees WHERE user_ID='$user_ID'";
 $result = $conn->query($sql);
@@ -31,8 +36,8 @@ if ($result->num_rows > 0) {
             $jobRow = $jobResult->fetch_assoc();
             $jobName = $jobRow['jobName'];
         }
-        echo "<h1>Welcome, ".$row['name']." ".$row['surname']."</h1>";
-        echo "<p>".$user_ID."<br>Name: ".$row['name']."<br>Surname: ".$row['surname']."<br>Job title: ".$jobName."<br>Address: ".$row['address']."<br>Phone number: ".$row['phone']."<br>Hired: ".$row['hireDate']."<br>Hourly pay: ".$row['hourPay']."</p>";
+        echo "<h1>User Information</h1>";
+        echo "<p>User ID: ".$user_ID."<br>Name: ".$row['name']."<br>Surname: ".$row['surname']."<br>Job title: ".$jobName."<br>Address: ".$row['address']."<br>Phone number: ".$row['phone']."<br>Hired: ".$row['hireDate']."<br>Hourly pay: ".$row['hourPay']."</p>";
     }
 } else {
     $sql = "SELECT * FROM customers WHERE user_ID='$user_ID'";
@@ -40,16 +45,14 @@ if ($result->num_rows > 0) {
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<h1>Welcome, ".$row['name']." ".$row['surname']."</h1>";
-            echo "<p>".$user_ID."<br>Name: ".$row['name']."<br>Surname: ".$row['surname']."<br>Address: ".$row['address']."<br>Phone number: ".$row['phone']."</p>";
+            echo "<h1>User Information</h1>";
+            echo "<p>User ID: ".$user_ID."<br>Name: ".$row['name']."<br>Surname: ".$row['surname']."<br>Address: ".$row['address']."<br>Phone number: ".$row['phone']."</p>";
         }
     } else {
-        echo "<p>No employee or customer information found for this user.</p>";
+        echo "<p>User information not found for the provided user ID.</p>";
     }
 }
 
 $conn->close();
 ?>
-<form action="logout.php" method="post">
-    <input type="submit" value="Logout">
-</form>
+<a href="logout.php">Logout</a>

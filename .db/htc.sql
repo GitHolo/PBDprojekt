@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 08 Kwi 2024, 10:11
--- Wersja serwera: 10.4.24-MariaDB
--- Wersja PHP: 8.1.6
+-- Generation Time: Apr 08, 2024 at 12:00 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `htc`
+-- Database: `htc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `customers`
+-- Table structure for table `customers`
 --
 
 CREATE TABLE `customers` (
@@ -35,10 +35,21 @@ CREATE TABLE `customers` (
   `phone` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`user_ID`, `name`, `surname`, `address`, `phone`) VALUES
+(11, 'Sarah', 'Johnson', '123 Oak St', '555-6789'),
+(12, 'Daniel', 'Williams', '456 Elm St', '555-1234'),
+(13, 'Linda', 'Brown', '789 Maple St', '555-5678'),
+(14, 'Robert', 'Jones', '101 Pine St', '555-9101'),
+(15, 'Jennifer', 'Miller', '202 Cedar St', '555-2345');
+
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `employees`
+-- Table structure for table `employees`
 --
 
 CREATE TABLE `employees` (
@@ -53,7 +64,7 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Zrzut danych tabeli `employees`
+-- Dumping data for table `employees`
 --
 
 INSERT INTO `employees` (`user_ID`, `name`, `surname`, `position_ID`, `address`, `phone`, `hireDate`, `hourPay`) VALUES
@@ -71,7 +82,7 @@ INSERT INTO `employees` (`user_ID`, `name`, `surname`, `position_ID`, `address`,
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `items`
+-- Table structure for table `items`
 --
 
 CREATE TABLE `items` (
@@ -83,7 +94,7 @@ CREATE TABLE `items` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `jobs`
+-- Table structure for table `jobs`
 --
 
 CREATE TABLE `jobs` (
@@ -92,7 +103,7 @@ CREATE TABLE `jobs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Zrzut danych tabeli `jobs`
+-- Dumping data for table `jobs`
 --
 
 INSERT INTO `jobs` (`position_ID`, `jobName`) VALUES
@@ -124,7 +135,7 @@ INSERT INTO `jobs` (`position_ID`, `jobName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `login`
+-- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
@@ -135,7 +146,7 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Zrzut danych tabeli `login`
+-- Dumping data for table `login`
 --
 
 INSERT INTO `login` (`user_ID`, `email`, `password`, `createDate`) VALUES
@@ -148,12 +159,17 @@ INSERT INTO `login` (`user_ID`, `email`, `password`, `createDate`) VALUES
 (7, 'jessica@example.com', 'jessicapass', '2024-04-08 10:09:59'),
 (8, 'christopher@example.com', 'chrispass', '2024-04-08 10:09:59'),
 (9, 'ashley@example.com', 'ashleypass', '2024-04-08 10:09:59'),
-(10, 'matthew@example.com', 'mattpass', '2024-04-08 10:09:59');
+(10, 'matthew@example.com', 'mattpass', '2024-04-08 10:09:59'),
+(11, 'sarah@johnson.com', '123', '2024-04-08 11:50:14'),
+(12, 'daniel@williams.com', '321', '2024-04-08 11:51:18'),
+(13, 'linda@brown.com', '54321', '2024-04-08 11:51:56'),
+(14, 'robert@jones.com', '45321', '2024-04-08 11:52:44'),
+(15, 'jennifer@miller.com', '45321', '2024-04-08 11:53:17');
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `orderdetails`
+-- Table structure for table `orderdetails`
 --
 
 CREATE TABLE `orderdetails` (
@@ -165,7 +181,7 @@ CREATE TABLE `orderdetails` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -181,7 +197,7 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `tables`
+-- Table structure for table `tables`
 --
 
 CREATE TABLE `tables` (
@@ -190,93 +206,93 @@ CREATE TABLE `tables` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indeksy dla zrzutów tabel
+-- Indexes for dumped tables
 --
 
 --
--- Indeksy dla tabeli `customers`
+-- Indexes for table `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`user_ID`);
 
 --
--- Indeksy dla tabeli `employees`
+-- Indexes for table `employees`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`user_ID`);
 
 --
--- Indeksy dla tabeli `items`
+-- Indexes for table `items`
 --
 ALTER TABLE `items`
   ADD PRIMARY KEY (`item_ID`);
 
 --
--- Indeksy dla tabeli `jobs`
+-- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`position_ID`);
 
 --
--- Indeksy dla tabeli `login`
+-- Indexes for table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`user_ID`);
 
 --
--- Indeksy dla tabeli `orders`
+-- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_ID`);
 
 --
--- Indeksy dla tabeli `tables`
+-- Indexes for table `tables`
 --
 ALTER TABLE `tables`
   ADD PRIMARY KEY (`table_ID`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT dla tabeli `customers`
+-- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT dla tabeli `employees`
+-- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
   MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT dla tabeli `items`
+-- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
   MODIFY `item_ID` int(255) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT dla tabeli `jobs`
+-- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
   MODIFY `position_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT dla tabeli `login`
+-- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT dla tabeli `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `order_ID` bigint(255) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT dla tabeli `tables`
+-- AUTO_INCREMENT for table `tables`
 --
 ALTER TABLE `tables`
   MODIFY `table_ID` int(255) NOT NULL AUTO_INCREMENT;
