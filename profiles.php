@@ -1,7 +1,9 @@
 <?php
 session_start(); 
 
-if (!isset($_SESSION['user_ID'])) {
+if (!isset($_SESSION['user_ID']) || $_SESSION['user_ID'] !== 1) {
+    echo "Admin permission required";
+    sleep(5);
     header("Location: login.php");
     exit();
 }
