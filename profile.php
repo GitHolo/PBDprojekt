@@ -2,6 +2,8 @@
 session_start(); 
 
 if (!isset($_SESSION['user_ID'])) {
+    echo "Login required";
+    sleep(5);
     header("Location: login.php");
     exit();
 }
