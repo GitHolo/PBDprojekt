@@ -1,10 +1,9 @@
 <?php
 session_start(); 
 
-if (!isset($_SESSION['user_ID']) || $_SESSION['user_ID'] !== 1) {
-    echo "Admin permission required";
-    sleep(5);
-    header("Location: login.php");
+if (!isset($_SESSION['user_ID']) || $_SESSION['user_ID'] != 1 && $_GET['user_ID'] !== 'me') {
+    echo "<script>alert('Login required');</script>";
+    echo "<script>window.location = 'login.php';</script>";
     exit();
 }
 
@@ -19,7 +18,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$user_ID = $_GET['user_ID'];
+if($_GET['user_ID']='me'){
+    $user_ID = $_SESSION['user_ID'];
+}else{
+    $user_ID = $_GET['user_ID'];
+}
 
 if (!isset($user_ID) || empty($user_ID)) {
     echo "User ID not provided.";
@@ -38,7 +41,11 @@ if ($result->num_rows > 0) {
             $jobRow = $jobResult->fetch_assoc();
             $jobName = $jobRow['jobName'];
         }
-        echo "<h1>User Information</h1>";
+        if($_GET['user_ID']=='me'){
+            echo "<h1>Welcome, ".$row['name']." ".$row['surname']."</h1>";
+        }else{
+            echo "<h1>User Information</h1>";
+        }
         echo "<p>User ID: ".$user_ID."<br>Name: ".$row['name']."<br>Surname: ".$row['surname']."<br>Job title: ".$jobName."<br>Address: ".$row['address']."<br>Phone number: ".$row['phone']."<br>Hired: ".$row['hireDate']."<br>Hourly pay: ".$row['hourPay']."</p>";
     }
 } else {

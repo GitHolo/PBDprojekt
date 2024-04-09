@@ -29,7 +29,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+if (isset($_SESSION['user_ID'])) {
+    header("Location: profiles.php?user_ID=me");
+    exit();
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -43,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_ID'] = $row['user_ID'];
         $_SESSION['email'] = $row['email'];
 
-        header("Location: profile.php");
+        header("Location: profiles.php?user_ID=me");
         exit();
     } else {
         echo "<script>alert('Invalid email or password');</script>";
