@@ -59,7 +59,10 @@ if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID
         } else {
             echo "<p>User information not found for the provided user ID.</p>";
         }
-    }
+    }?>
+    <form action="logout.php" method="post">
+    <input type="submit" value="Logout">
+</form><?php
     echo "<br>";
     if ($_SESSION['user_ID'] == 1) {
         $userListSql = "SELECT 
@@ -94,6 +97,3 @@ if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID
     $conn->close();
 }
 ?>
-<form action="logout.php" method="post">
-    <input type="submit" value="Logout">
-</form>
