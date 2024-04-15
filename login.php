@@ -55,3 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+<br>
+<form action="index.php" method="post">
+    <input type="submit" value="Home">
+</form>

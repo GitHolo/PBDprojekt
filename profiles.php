@@ -62,7 +62,11 @@ if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID
     }?>
     <form action="logout.php" method="post">
     <input type="submit" value="Logout">
-</form><?php
+</form>
+<form action="index.php" method="post">
+    <input type="submit" value="Home">
+</form>
+<?php
     echo "<br>";
     if ($_SESSION['user_ID'] == 1) {
         $userListSql = "SELECT 
