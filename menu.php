@@ -139,7 +139,7 @@
 					</div>
 
 				<!-- Footer -->
-				<?php include "./assets/site/footer.html";?>
+				<?php include "./assets/site/footer.php";?>
 
 			</div>
 
