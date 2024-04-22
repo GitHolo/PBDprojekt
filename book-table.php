@@ -1,7 +1,8 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>PHPJabbers.com | Free Restaurant Website Template</title>
+		<title>Papa's Restaurants</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
@@ -18,7 +19,7 @@
 
 							<!-- Logo -->
 								<a href="index.html" class="logo">
-									<span class="fa fa-cutlery"></span> <span class="title">Restaurant Website</span>
+									<span class="fa fa-cutlery"></span> <span class="title">Papa's Restaurants</span>
 								</a>
 
 							<!-- Nav -->
@@ -32,27 +33,7 @@
 					</header>
 
 				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="index.html">Home</a></li>
-
-							<li><a href="book-table.html" class="active">Book a Table</a></li>
-
-							<li><a href="menu.html">Menu</a></li>
-
-							<li>
-								<a href="#" class="dropdown-toggle">About</a>
-
-								<ul>
-									<li><a href="about.html">About Us</a></li>
-									<li><a href="blog.html">Blog</a></li>
-									<li><a href="testimonials.html">Testimonials</a></li>
-								</ul>
-							</li>
-							<li><a href="contact.html">Contact Us</a></li>
-						</ul>
-					</nav>
+				<?php include "./assets/site/menu.php";?>
 
 				<!-- Main -->
 					<div id="main">

@@ -14,23 +14,8 @@
 			<div id="wrapper">
 
 				<!-- Header -->
-					<header id="header">
-						<div class="inner">
+				<?php include "./assets/site/mheader.php";?>
 
-							<!-- Logo -->
-								<a href="index.php" class="logo">
-									<span class="fa fa-cutlery"></span> <span class="title">Restaurant Website</span>
-								</a>
-
-							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
-
-						</div>
-					</header>
 
 				<!-- Menu -->
 				<?php include "./assets/site/menu.php";?>
