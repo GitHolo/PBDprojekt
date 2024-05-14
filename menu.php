@@ -1,20 +1,30 @@
 <?php session_start();?>
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>PHPJabbers.com | Free Restaurant Website Template</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<head>
+	<title>Papa's Restaurants</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+	
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./images/papas-pizzeria.jpg">
+	<script src="https://kit.fontawesome.com/93c44cf550.js" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
 	</head>
 	<body class="is-preload">
 		<!-- Wrapper -->
 			<div id="wrapper">
 
 				<!-- Header -->
-				<?php include "./assets/site/mheader.php";?>
+				<?php include "./assets/site/mheader.html";?>
 
 
 				<!-- Menu -->
@@ -30,96 +40,53 @@
 								<img src="images/banner-image-5-1920x500.jpg" class="img-fluid" alt="" />
 							</div>
 
-							<!-- Vacations -->
+							<!-- Food -->
 							<section class="tiles">
-								<article class="style1">
-									<span class="image">
-										<img src="images/product-1-720x480.jpg" alt="" />
-									</span>
-									<a href="#">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$11.00</del> <strong> $9.95</strong></p>
+    <?php
+    // Your database connection code
+	$servername = "localhost"; 
+	$username = "root"; 
+	$password = ""; 
+	$dbname = "htc"; 
 
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, aspernatur?
-		                                </p>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="images/product-2-720x480.jpg" alt="" />
-									</span>
-									<a href="#">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$11.00</del> <strong> $9.95</strong></p>
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, ea.
-		                                </p>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-										<img src="images/product-3-720x480.jpg" alt="" />
-									</span>
-									<a href="#">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$11.00</del> <strong> $9.95</strong></p>
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, qui.
-		                                </p>
-									</a>
-								</article>
+    // SQL query to select items from the database
+    $sql = "SELECT * FROM items";
+    $result = $conn->query($sql);
 
-								<article class="style4">
-									<span class="image">
-										<img src="images/product-4-720x480.jpg" alt="" />
-									</span>
-									<a href="#">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$11.00</del> <strong> $9.95</strong></p>
-
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos, non!
-		                                </p>
-									</a>
-								</article>
-
-								<article class="style5">
-									<span class="image">
-										<img src="images/product-5-720x480.jpg" alt="" />
-									</span>
-									<a href="#">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$11.00</del> <strong> $9.95</strong></p>
-
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, nam.
-		                                </p>
-									</a>
-								</article>
-
-								<article class="style6">
-									<span class="image">
-										<img src="images/product-6-720x480.jpg" alt="" />
-									</span>
-									<a href="#">
-										<h2>Lorem ipsum dolor sit amet, consectetur</h2>
-										
-										<p><del>$11.00</del> <strong> $9.95</strong></p>
-
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, quod.
-		                                </p>
-									</a>
-								</article>
-							</section>
+    // Check if there are any items in the database
+    if ($result->num_rows > 0) {
+		$style = 1;
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+			if ($style==7){
+				$style = 1;
+			}
+            echo '<article class="style'.$style.'">';
+			$style ++;
+            echo '<span class="image">';
+            echo '<img src="images/product-'.rand(1,6).'-720x480.jpg"." alt="" />';
+            echo '</span>';
+            echo '<a href="#">';
+            echo '<h2>' . $row["name"] . '</h2>';
+            echo '<p><del>$' . ($row["price"]+ 2) . '</del> <strong>$' . $row["price"]  . '</strong></p>';
+            echo '</a>';
+            echo '</article>';
+        }
+    } else {
+        echo "0 results";
+    }
+    // Close the database connection
+    $conn->close();
+    ?>
+</section>
 						</div>
 					</div>
 

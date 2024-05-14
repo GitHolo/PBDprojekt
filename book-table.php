@@ -41,6 +41,52 @@
 
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, est. Totam aperiam, atque! Distinctio quo, voluptate asperiores. Delectus sapiente, repellendus esse cupiditate error. Alias veritatis, iusto assumenda eum a sint veniam ab illum voluptas, minima nam aliquid maxime cum, corporis perspiciatis commodi beatae optio? Porro consequuntur modi expedita earum quidem! Vel, tenetur, ex. Quaerat nemo modi architecto harum asperiores hic.</p>
 							
+							<h2>Tables</h2>
+							<section class="tiles">
+    <?php
+    // Your database connection code
+	$servername = "localhost"; 
+	$username = "root"; 
+	$password = ""; 
+	$dbname = "htc"; 
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // SQL query to select items from the database
+    $sql = "SELECT * FROM tables";
+    $result = $conn->query($sql);
+
+    // Check if there are any items in the database
+    if ($result->num_rows > 0) {
+		$style = 1;
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+			if ($style==7){
+				$style = 1;
+			}
+            echo '<article class="style'.$style.'">';
+			$style ++;
+            echo '<span class="image">';
+            echo '<img src="images/product-'.rand(1,6).'-720x480.jpg"." alt="" />';
+            echo '</span>';
+            echo '<a href="#">';
+            echo '<h2>' . $row["table_ID"] . '</h2>';
+            echo '<p>NO. Seats: <strong>' . $row["seats"]  . '</strong></p>';
+            echo '</a>';
+            echo '</article>';
+        }
+    } else {
+        echo "0 results";
+    }
+    // Close the database connection
+    ?>
+</section>
 						</div>
 					</div>
 
@@ -60,11 +106,23 @@
 										</div>
 
 										<div class="field half">
+											
 											<select>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
+												<?php
+												$sql = "SELECT * FROM tables";
+												$result = $conn->query($sql);
+											
+												if ($result->num_rows > 0) {
+													// Output data of each row
+													while ($row = $result->fetch_assoc()) {
+														echo '<option value="'.$row["table_ID"].'">'.$row["table_ID"].' - <strong>NO. Seats: '.$row["seats"].'</strong></option>' ;
+													}
+												} else {
+													echo "0 results";
+												}?>
+												
+											
+											
 											</select>
 										</div>
 
