@@ -4,11 +4,13 @@
     <title>Register</title>
     <link href="assets/css/login.css" rel="stylesheet" />
     <script>
+        // Function to validate the email format using a regular expression
         function validateEmail(email) {
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailPattern.test(email);
         }
 
+        // Function to check the email input and display an error message if invalid
         function checkEmail() {
             const emailInput = document.querySelector('input[name="email"]');
             const errorDiv = document.getElementById('email-error');
@@ -22,15 +24,17 @@
             }
         }
 
+        // Function to validate the entire form, currently only checks the email
         function validateForm() {
             return checkEmail();
         }
 
+        // Event listener to validate the form before submission
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.querySelector('form');
             form.addEventListener('submit', function(event) {
                 if (!validateForm()) {
-                    event.preventDefault();
+                    event.preventDefault(); // Prevent form submission if validation fails
                 }
             });
         });
@@ -40,8 +44,9 @@
     <div class="login-box">
         <h2>Register</h2>
         <form method="post" action="register.php">
+            <!-- Email input with oninput event to check email format -->
             <input type="text" name="email" placeholder="Email" required spellcheck="true" oninput="checkEmail()"><br>
-            <div id="email-error" style="color: red;"></div>
+            <div id="email-error" style="color: red;"></div> <!-- Div to display email error message -->
             <input type="password" name="password" placeholder="Password" required><br>
             <input type="text" name="name" placeholder="Name" required><br>
             <input type="text" name="surname" placeholder="Surname" required><br>
@@ -50,10 +55,12 @@
             <input type="submit" name="submit" value="Register">
         </form>
         <br>
+        <!-- Link to login page -->
         <form style="justify-content: center; display: flex;" action="login.php" method="post">
             <input style="width: 60%;" type="submit" value="Login">
         </form>
         <br>
+        <!-- Link to home page -->
         <form style="justify-content: center; display: flex;" action="index.php" method="post">
             <input style="width: 40%;" type="submit" value="Home">
         </form>
@@ -62,20 +69,25 @@
 </html>
 
 <?php
-session_start(); 
+session_start(); // Start the session to use session variables
 
+// Database connection credentials
 $servername = "localhost"; 
 $username = "root"; 
 $password = ""; 
 $dbname = "htc"; 
 
+// Create connection to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check if the connection to the database failed
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Check if the request method is POST (form submission)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if all required POST variables are set
     if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['address']) && isset($_POST['phone'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -84,32 +96,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $address = $_POST['address'];
         $phone = $_POST['phone'];
 
-        // Check if email already exists
+        // Check if the email already exists in the login table
         $check_sql = "SELECT user_ID FROM login WHERE email='$email'";
         $check_result = $conn->query($check_sql);
 
-        if ($check_result->num_rows > 0) {
+        if ($check_result->num_rows > 0) { // If email already exists
             echo "<script>alert('Email already exists');</script>";
         } else {
-            // Insert into login table
+            // Insert the new user into the login table
             $insert_login_sql = "INSERT INTO login (email, password) VALUES ('$email', '$password')";
-            if ($conn->query($insert_login_sql) === TRUE) {
-                // Get the last inserted user_ID
+            if ($conn->query($insert_login_sql) === TRUE) { // If insertion is successful
+                // Get the last inserted user ID
                 $user_ID = $conn->insert_id;
 
-                // Insert into customers table
+                // Insert the user details into the customers table
                 $insert_customers_sql = "INSERT INTO customers (user_ID, name, surname, address, phone) VALUES ('$user_ID', '$name', '$surname', '$address', '$phone')";
-                if ($conn->query($insert_customers_sql) === TRUE) {
+                if ($conn->query($insert_customers_sql) === TRUE) { // If insertion is successful
                     echo "<script>alert('Account created successfully');</script>";
-                } else {
+                } else { // If there is an error inserting into customers table
                     echo "<script>alert('Error creating account');</script>";
                 }
-            } else {
+            } else { // If there is an error inserting into login table
                 echo "<script>alert('Error creating account');</script>";
             }
         }
     }
 }
 
+// Close the database connection
 $conn->close();
 ?>

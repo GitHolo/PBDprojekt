@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2024 at 12:00 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: May 14, 2024 at 08:23 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `customers` (
   `surname` varchar(50) NOT NULL,
   `address` varchar(100) NOT NULL,
   `phone` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customers`
@@ -61,23 +61,24 @@ CREATE TABLE `employees` (
   `phone` varchar(15) NOT NULL,
   `hireDate` date NOT NULL DEFAULT current_timestamp(),
   `hourPay` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employees`
 --
 
 INSERT INTO `employees` (`user_ID`, `name`, `surname`, `position_ID`, `address`, `phone`, `hireDate`, `hourPay`) VALUES
-(1, 'Admin', 'AdminSurname', 1, 'AdminAddress', '1234567890', '2024-04-08', '15.00'),
-(2, 'John', 'Doe', 2, '123 Main St', '555-1234', '2024-04-08', '12.50'),
-(3, 'Jane', 'Smith', 3, '456 Elm St', '555-5678', '2024-04-08', '13.75'),
-(4, 'Michael', 'Johnson', 4, '789 Oak St', '555-9101', '2024-04-08', '13.00'),
-(5, 'Emily', 'Brown', 5, '101 Pine St', '555-2345', '2024-04-08', '11.50'),
-(6, 'David', 'Martinez', 6, '202 Cedar St', '555-6789', '2024-04-08', '12.25'),
-(7, 'Jessica', 'Garcia', 7, '303 Maple St', '555-1011', '2024-04-08', '11.75'),
-(8, 'Christopher', 'Lopez', 8, '404 Birch St', '555-1213', '2024-04-08', '12.00'),
-(9, 'Ashley', 'Lee', 9, '505 Walnut St', '555-1415', '2024-04-08', '10.50'),
-(10, 'Matthew', 'Taylor', 10, '606 Cedar St', '555-1617', '2024-04-08', '10.75');
+(1, 'Admin', 'AdminSurname', 1, 'AdminAddress', '1234567890', '2024-04-08', 15.00),
+(2, 'John', 'Doe', 2, '123 Main St', '555-1234', '2024-04-08', 12.50),
+(3, 'Jane', 'Smith', 3, '456 Elm St', '555-5678', '2024-04-08', 13.75),
+(4, 'Michael', 'Johnson', 4, '789 Oak St', '555-9101', '2024-04-08', 13.00),
+(5, 'Emily', 'Brown', 5, '101 Pine St', '555-2345', '2024-04-08', 11.50),
+(6, 'David', 'Martinez', 6, '202 Cedar St', '555-6789', '2024-04-08', 12.25),
+(7, 'Jessica', 'Garcia', 7, '303 Maple St', '555-1011', '2024-04-08', 11.75),
+(8, 'Christopher', 'Lopez', 8, '404 Birch St', '555-1213', '2024-04-08', 12.00),
+(9, 'Ashley', 'Lee', 9, '505 Walnut St', '555-1415', '2024-04-08', 10.50),
+(10, 'Matthew', 'Taylor', 10, '606 Cedar St', '555-1617', '2024-04-08', 10.75),
+(21, '123a', 'ads', 1, 'asdd', 'asdd', '2024-05-14', 13.99);
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,23 @@ CREATE TABLE `items` (
   `item_ID` int(255) NOT NULL,
   `name` varchar(50) NOT NULL,
   `price` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_ID`, `name`, `price`) VALUES
+(1, 'Pepperoni Pizza', 9.99),
+(2, 'Mushroom Pizza', 8.99),
+(3, 'Veggie Pizza', 10.49),
+(4, 'Sausage Pizza', 9.49),
+(5, 'Cheese Pizza', 7.99),
+(6, 'Hawaiian Pizza', 10.99),
+(7, 'BBQ Chicken Pizza', 11.99),
+(8, 'Meat Lovers Pizza', 12.99),
+(9, 'Margherita Pizza', 8.49),
+(10, 'Buffalo Chicken Pizza', 11.49);
 
 -- --------------------------------------------------------
 
@@ -100,7 +117,7 @@ CREATE TABLE `items` (
 CREATE TABLE `jobs` (
   `position_ID` int(255) NOT NULL,
   `jobName` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jobs`
@@ -143,7 +160,7 @@ CREATE TABLE `login` (
   `email` varchar(100) NOT NULL,
   `password` varchar(50) NOT NULL,
   `createDate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login`
@@ -164,7 +181,8 @@ INSERT INTO `login` (`user_ID`, `email`, `password`, `createDate`) VALUES
 (12, 'daniel@williams.com', '321', '2024-04-08 11:51:18'),
 (13, 'linda@brown.com', '54321', '2024-04-08 11:51:56'),
 (14, 'robert@jones.com', '45321', '2024-04-08 11:52:44'),
-(15, 'jennifer@miller.com', '45321', '2024-04-08 11:53:17');
+(15, 'jennifer@miller.com', '45321', '2024-04-08 11:53:17'),
+(21, '123@123.c', '123', '2024-05-14 17:28:16');
 
 -- --------------------------------------------------------
 
@@ -176,7 +194,7 @@ CREATE TABLE `orderdetails` (
   `order_ID` int(255) NOT NULL,
   `item_ID` int(255) NOT NULL,
   `amount` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -192,7 +210,7 @@ CREATE TABLE `orders` (
   `table_ID` int(255) NOT NULL,
   `reservation` datetime NOT NULL,
   `completion` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -203,7 +221,23 @@ CREATE TABLE `orders` (
 CREATE TABLE `tables` (
   `table_ID` int(255) NOT NULL,
   `seats` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tables`
+--
+
+INSERT INTO `tables` (`table_ID`, `seats`) VALUES
+(1, 2),
+(2, 3),
+(3, 4),
+(4, 5),
+(5, 6),
+(6, 7),
+(7, 8),
+(8, 2),
+(9, 3),
+(10, 4);
 
 --
 -- Indexes for dumped tables
@@ -259,19 +293,19 @@ ALTER TABLE `tables`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_ID` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `item_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -283,7 +317,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -295,7 +329,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `table_ID` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `table_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
