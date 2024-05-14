@@ -25,6 +25,15 @@ This project encompasses a web application with various components styled using 
 - Font Awesome
 - NodeJS
 
+**Font Used: Source Sans Pro**
+
 For further details on the database schema, refer to the [database schema layout](.db/scheme.txt) file.
+
++ [x] Code readability and structure (directories, names, comments, structure, hierarchy, etc.) [10%]
++ [x] Fulfillment of basic recommendations regarding cascading styles (positioning, references, inclusion of appropriate elements) [20%]
++ [x] Compilation of fonts and colors used on the website (additional page) [10%]
++ [x] Content of the website according to recommendations (existing elements on the site: banner, logo) [15%]
++ [x] Website composition and its graphic presentation (selection of cascading styles, use of advanced styles, visually pleasing aesthetics, animations, interactivity, clear communication for the user) [25%]
++ [x] Responsiveness (including mobile version) [10%]
 
 This README serves as a guide to understand the color usage and libraries involved in the project.
