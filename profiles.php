@@ -1,6 +1,40 @@
 <?php
-session_start(); 
+session_start(); ?>
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Papa's Restaurants</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./images/papas-pizzeria.jpg">
+    <script src="https://kit.fontawesome.com/93c44cf550.js" crossorigin="anonymous"></script>
+
+
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+	</head>
+    <body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<?php include "./assets/site/mheader.html";?>
+
+
+				<!-- Menu -->
+				<?php include "./assets/site/menu.php";?>
+                <div id="main">
+                    <div class="inner">
+                        
+    <?php
 if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID'] !== 'me')) {
     echo "<script>alert('Login required');</script>";
     echo "<script>window.location = 'login.php';</script>";
@@ -90,7 +124,7 @@ if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID
             customers ON login.user_ID = customers.user_ID;";
         $userListResult = $conn->query($userListSql);
         echo "<br>";
-        echo "<h2>Lista użytkowników:</h2>";
+        echo "<h2>List of users:</h2>";
         echo "<ul>";
         while ($row = $userListResult->fetch_assoc()) {
             echo "<li><a href='profiles.php?user_ID=" . $row['user_ID'] . "'>" . $row['name'] . "</a> - " . $row['user_type'] . "</li>";
@@ -101,3 +135,9 @@ if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID
     $conn->close();
 }
 ?>
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets/js/main.js"></script>
+</div></div>
+</div>
+</body>

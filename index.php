@@ -8,13 +8,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+	
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/main.css" />
-
+    <link rel="stylesheet" href="assets/css/index.css" />
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="./images/papas-pizzeria.jpg">
-
+	<script src="https://kit.fontawesome.com/93c44cf550.js" crossorigin="anonymous"></script>
     <!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
