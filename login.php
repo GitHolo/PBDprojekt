@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Login</title>
-    <link href="styles/login.css" rel="stylesheet" />
+    <link href="assets/css/login.css" rel="stylesheet" />
 </head>
 <body>
     <div class="login-box">

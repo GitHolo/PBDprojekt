@@ -11,9 +11,6 @@
 			}, 100);
 		});
 
-	// Scrolly.
-		$('.scrolly').scrolly();
-
 	// Forms.
 		var $form = $('form');
 
@@ -31,7 +28,7 @@
 					.css('resize', 'none')
 					.on('keydown', function(event) {
 
-						if (event.keyCode == 13
+						if (event.key == 13
 						&&	event.ctrlKey) {
 
 							event.preventDefault();
@@ -57,7 +54,7 @@
 					})
 					.on('keyup', function(event) {
 
-						if (event.keyCode == 9)
+						if (event.key == 9)
 							$this
 								.select();
 
@@ -154,7 +151,7 @@
 			.on('keydown', function(event) {
 
 				// Hide on escape.
-					if (event.keyCode == 27)
+					if (event.key == 'Escape')
 						$menu._hide();
 
 			});
