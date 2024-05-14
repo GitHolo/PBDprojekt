@@ -80,6 +80,11 @@ if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID
                 echo "<h1>User Information</h1>";
             }
             echo "<p>User ID: ".$user_ID."<br>Name: ".$row['name']."<br>Surname: ".$row['surname']."<br>Job title: ".$jobName."<br>Address: ".$row['address']."<br>Phone number: ".$row['phone']."<br>Hired: ".$row['hireDate']."<br>Hourly pay: ".$row['hourPay']."</p>";
+            ?><form action="retire.php" method="post">
+    <input type="hidden" name="user_ID" value="<?php echo $user_ID; ?>">
+    <input type="submit" value="Retire">
+</form>
+<?php
         }
     } else {
         $sql = "SELECT * FROM customers WHERE user_ID='$user_ID'";
@@ -89,6 +94,30 @@ if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID
             while ($row = $result->fetch_assoc()) {
                 echo "<h1>User Information</h1>";
                 echo "<p>User ID: ".$user_ID."<br>Name: ".$row['name']."<br>Surname: ".$row['surname']."<br>Address: ".$row['address']."<br>Phone number: ".$row['phone']."</p>";
+                ?>
+                <form action="apply_employee.php" method="post">
+    <input type="hidden" name="user_ID" value="<?php echo $user_ID; ?>">
+    <select name="position_ID" required>
+    <option value="" disabled selected>Select Position</option>
+    <?php
+
+    // Fetch positions from jobs table
+    $sql = "SELECT position_ID, jobName FROM jobs";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<option value='" . $row['position_ID'] . "'>" . $row['jobName'] . "</option>";
+        }
+    }
+
+    // Close database connection
+    $conn->close();
+    ?>
+</select><br>
+    <input type="text" name="hourPay" placeholder="Hourly Pay" required><br>
+    <input type="submit" value="Apply">
+</form><?php
             }
         } else {
             echo "<p>User information not found for the provided user ID.</p>";
@@ -102,37 +131,40 @@ if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID
 </form>
 <?php
     echo "<br>";
-    if ($_SESSION['user_ID'] == 1) {
-        $userListSql = "SELECT 
-            CASE
-                WHEN employees.user_ID IS NOT NULL THEN employees.name
-                WHEN customers.user_ID IS NOT NULL THEN customers.name
-            END AS name,
-            CASE
-                WHEN employees.user_ID IS NOT NULL THEN employees.user_ID
-                WHEN customers.user_ID IS NOT NULL THEN customers.user_ID
-            END AS user_ID,
-            CASE
-                WHEN employees.user_ID IS NOT NULL THEN 'Employee'
-                WHEN customers.user_ID IS NOT NULL THEN 'Customer'
-            END AS user_type
-        FROM 
-            login
-        LEFT JOIN 
-            employees ON login.user_ID = employees.user_ID
-        LEFT JOIN 
-            customers ON login.user_ID = customers.user_ID;";
-        $userListResult = $conn->query($userListSql);
-        echo "<br>";
-        echo "<h2>List of users:</h2>";
-        echo "<ul>";
+    // Check if the user's position ID is 1
+    $sql = "SELECT position_ID FROM employees WHERE user_ID='$user_ID'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if ($row['position_ID'] == 1) {
+            $userListSql = "SELECT 
+                CASE
+                    WHEN employees.user_ID IS NOT NULL THEN employees.name
+                    WHEN customers.user_ID IS NOT NULL THEN customers.name
+                END AS name,
+                CASE
+                    WHEN employees.user_ID IS NOT NULL THEN employees.user_ID
+                    WHEN customers.user_ID IS NOT NULL THEN customers.user_ID
+                END AS user_ID,
+                CASE
+                    WHEN employees.user_ID IS NOT NULL THEN 'Employee'
+                    WHEN customers.user_ID IS NOT NULL THEN 'Customer'
+                END AS user_type
+            FROM 
+                login
+            LEFT JOIN 
+                employees ON login.user_ID = employees.user_ID
+            LEFT JOIN 
+                customers ON login.user_ID = customers.user_ID;";
+            $userListResult = $conn->query($userListSql);
+            echo "<br>";
+            echo "<h2>List of users:</h2>";
+            echo "<ul>";
         while ($row = $userListResult->fetch_assoc()) {
             echo "<li><a href='profiles.php?user_ID=" . $row['user_ID'] . "'>" . $row['name'] . "</a> - " . $row['user_type'] . "</li>";
         }
         echo "</ul>";
-    }
-
-    $conn->close();
+        }}
 }
 ?>
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>

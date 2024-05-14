@@ -845,6 +845,7 @@ input[type="submit"]:disabled {
  flex-wrap: wrap;
  postiion: relative;
  margin: -2.5em 0 2.5em -2.5em;
+ justify-content: center;
 }
 .tiles article {
  -moz-transition: -moz-transform 0.5s ease, opacity 0.5s ease;
