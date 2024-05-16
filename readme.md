@@ -20,10 +20,8 @@ This project encompasses a web application with various components styled using 
 
 **Libraries Used:**
 - jQuery
-- Popper
 - Bootstrap
 - Font Awesome
-- NodeJS
 
 **Font Used: Source Sans Pro**
 

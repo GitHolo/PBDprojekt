@@ -25,5 +25,7 @@
         <li><a href="menu.php">Menu</a></li>
         <!-- Link to contact page -->
         <li><a href="contact.php">Contact Us</a></li>
+        <!-- link to readme page -->
+        <li><a href="readme.php">Readme</a></li>
     </ul>
 </nav>
