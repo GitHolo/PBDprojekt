@@ -1411,3 +1411,16 @@ body.is-menu-visible #menu .close {
   padding: 0 1.25em;
  }
 }
+body {
+    font-family: sans-serif;
+    margin: 12px;
+  }
+  
+  #floating {
+    position: absolute;
+    background: #585858;
+    padding: 0.5rem;
+    color: white;
+    box-sizing: border-box;
+  }
+  

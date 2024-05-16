@@ -1,4 +1,4 @@
-<!-- Navigation menu -->
+<!-- Navigation menu made using bootstrap-->
 <nav id="menu">
     <!-- Heading for the menu -->
     <h2>Menu</h2>
