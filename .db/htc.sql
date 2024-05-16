@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2024 at 08:23 PM
+-- Generation Time: May 16, 2024 at 06:33 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,11 +40,16 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`user_ID`, `name`, `surname`, `address`, `phone`) VALUES
-(11, 'Sarah', 'Johnson', '123 Oak St', '555-6789'),
-(12, 'Daniel', 'Williams', '456 Elm St', '555-1234'),
-(13, 'Linda', 'Brown', '789 Maple St', '555-5678'),
-(14, 'Robert', 'Jones', '101 Pine St', '555-9101'),
-(15, 'Jennifer', 'Miller', '202 Cedar St', '555-2345');
+(1, 'John', 'password1', '123 Main Street', '1234567890'),
+(2, 'Jane', 'password2', '456 Elm Street', '0987654321'),
+(3, 'David', 'password3', '789 Oak Street', '5678901234'),
+(4, 'Emily', 'password4', '321 Pine Street', '9012345678'),
+(5, 'Michael', 'password5', '654 Maple Street', '3456789012'),
+(6, 'Sophia', 'password6', '987 Cedar Street', '6789012345'),
+(7, 'Jacob', 'password7', '234 Birch Street', '1234567890'),
+(8, 'Olivia', 'password8', '567 Spruce Street', '0987654321'),
+(9, 'William', 'password9', '890 Walnut Street', '5678901234'),
+(10, 'Emma', 'password10', '123 Cherry Street', '9012345678');
 
 -- --------------------------------------------------------
 
@@ -68,17 +73,12 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`user_ID`, `name`, `surname`, `position_ID`, `address`, `phone`, `hireDate`, `hourPay`) VALUES
-(1, 'Admin', 'AdminSurname', 1, 'AdminAddress', '1234567890', '2024-04-08', 15.00),
-(2, 'John', 'Doe', 2, '123 Main St', '555-1234', '2024-04-08', 12.50),
-(3, 'Jane', 'Smith', 3, '456 Elm St', '555-5678', '2024-04-08', 13.75),
-(4, 'Michael', 'Johnson', 4, '789 Oak St', '555-9101', '2024-04-08', 13.00),
-(5, 'Emily', 'Brown', 5, '101 Pine St', '555-2345', '2024-04-08', 11.50),
-(6, 'David', 'Martinez', 6, '202 Cedar St', '555-6789', '2024-04-08', 12.25),
-(7, 'Jessica', 'Garcia', 7, '303 Maple St', '555-1011', '2024-04-08', 11.75),
-(8, 'Christopher', 'Lopez', 8, '404 Birch St', '555-1213', '2024-04-08', 12.00),
-(9, 'Ashley', 'Lee', 9, '505 Walnut St', '555-1415', '2024-04-08', 10.50),
-(10, 'Matthew', 'Taylor', 10, '606 Cedar St', '555-1617', '2024-04-08', 10.75),
-(21, '123a', 'ads', 1, 'asdd', 'asdd', '2024-05-14', 13.99);
+(11, 'Liam', 'password11', 1, '123 Main Street', '1234567890', '2024-05-16', 15.00),
+(12, 'Ava', 'password12', 2, '456 Elm Street', '0987654321', '2024-05-16', 17.50),
+(13, 'Noah', 'password13', 3, '789 Oak Street', '5678901234', '2024-05-16', 20.00),
+(14, 'Isabella', 'password14', 4, '321 Pine Street', '9012345678', '2024-05-16', 18.00),
+(15, 'James', 'password15', 5, '654 Maple Street', '3456789012', '2024-05-16', 16.50),
+(17, 'admin', 'admin', 1, 'admin', '1234567890', '2024-05-16', 99.99);
 
 -- --------------------------------------------------------
 
@@ -158,7 +158,7 @@ INSERT INTO `jobs` (`position_ID`, `jobName`) VALUES
 CREATE TABLE `login` (
   `user_ID` int(255) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `createDate` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -167,22 +167,22 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`user_ID`, `email`, `password`, `createDate`) VALUES
-(1, 'admin@admin.com', 'admin', '2024-04-08 09:12:19'),
-(2, 'john@example.com', 'password123', '2024-04-08 10:09:59'),
-(3, 'jane@example.com', 'securepass', '2024-04-08 10:09:59'),
-(4, 'michael@example.com', 'michaelpass', '2024-04-08 10:09:59'),
-(5, 'emily@example.com', 'emilypass', '2024-04-08 10:09:59'),
-(6, 'david@example.com', 'davidpass', '2024-04-08 10:09:59'),
-(7, 'jessica@example.com', 'jessicapass', '2024-04-08 10:09:59'),
-(8, 'christopher@example.com', 'chrispass', '2024-04-08 10:09:59'),
-(9, 'ashley@example.com', 'ashleypass', '2024-04-08 10:09:59'),
-(10, 'matthew@example.com', 'mattpass', '2024-04-08 10:09:59'),
-(11, 'sarah@johnson.com', '123', '2024-04-08 11:50:14'),
-(12, 'daniel@williams.com', '321', '2024-04-08 11:51:18'),
-(13, 'linda@brown.com', '54321', '2024-04-08 11:51:56'),
-(14, 'robert@jones.com', '45321', '2024-04-08 11:52:44'),
-(15, 'jennifer@miller.com', '45321', '2024-04-08 11:53:17'),
-(21, '123@123.c', '123', '2024-05-14 17:28:16');
+(1, 'user1@example.com', '$2y$10$YjBM9rAQzoxN2tCsoA.yfugXQCKP96S0qnGkWwqFK9URiUdE4vuva', '2024-05-16 18:15:55'),
+(2, 'user2@example.com', '$2y$10$e4Gg7TYlcJUW2h7/pRgXiOq2z1uKYjBQV84yVJY5ZnDcH.G/9Cpze', '2024-05-16 18:15:55'),
+(3, 'user3@example.com', '$2y$10$5OWxIHpPqXZt9dtfC.F/r.OYqY1mDXs7b9Eh8GxD/p/KsI0iXbEw2', '2024-05-16 18:15:55'),
+(4, 'user4@example.com', '$2y$10$lfqaj7vjAMFE4qMDz4PGJuBOdM0Rvhc7quy0FQ0FJrrE06sWOWZoW', '2024-05-16 18:15:55'),
+(5, 'user5@example.com', '$2y$10$HCMvg0F.dDVkg5s0mFWYTO1.Lf3NDbpF8tncZpXKjMj6EdxdOTdD6', '2024-05-16 18:15:55'),
+(6, 'user6@example.com', '$2y$10$Kc0Z5KcExNcz.CSN6ZsL4eW8pOSdCkQ0sYsKzmdq0XtZf6zNw/7/K', '2024-05-16 18:15:55'),
+(7, 'user7@example.com', '$2y$10$iVCnlI2K6PcSQ3qPJxxV1OZirWhA/XHE8Aln.ku/jzIHMd8f0xtJG', '2024-05-16 18:15:55'),
+(8, 'user8@example.com', '$2y$10$y.HG3H8U7g5ob7R0nZ3xauyyuoYgZjX7y89MwHvDzBktV3GM3Jv7i', '2024-05-16 18:15:55'),
+(9, 'user9@example.com', '$2y$10$YplBZTh.e2q0jVHwa9MyCe3bC4AojPNcqvw1ulUd3CVFivnIqw0bW', '2024-05-16 18:15:55'),
+(10, 'user10@example.com', '$2y$10$O1.mNjWn6r8h2K4x4X6gTOA/GM9Dj1qjXfxkl1.z34NQtMJyHVHfG', '2024-05-16 18:15:55'),
+(11, 'liam@example.com', '$2y$10$4x3oT.9yVpEaPmv0eeM1JOmX9JW3aNVtZ8dpy0v7mB1HBlIzgdXsC', '2024-05-16 18:16:40'),
+(12, 'ava@example.com', '$2y$10$KT5ybzBuUbQDDODId8XmHe1.XqA8J5QQJR2JgTugA8ER2CKTRkN6a', '2024-05-16 18:16:40'),
+(13, 'noah@example.com', '$2y$10$SPb./FOc6gSY1p9qz.2DkuZdJfruTvxOK3pKp9JawpgMLOZDPvfHm', '2024-05-16 18:16:40'),
+(14, 'isabella@example.com', '$2y$10$l.Ulou6Zh4jX.GbRUeHO6Oh.r0tGWVAYD17otI74f6N0ekgl3gR1G', '2024-05-16 18:16:40'),
+(15, 'james@example.com', '$2y$10$2C4CKMK6EaJZMx6pLhOB8.YlXjINpHo6oOBtJ4LHmwcWsHRubYj8y', '2024-05-16 18:16:40'),
+(17, 'admin@admin.com', '$2y$10$8N4pKe/MOBuB7k9gqedMvuP0KhrvnYQKGYGqDWXRgWqSiPDrZh0nS', '2024-05-16 18:24:19');
 
 -- --------------------------------------------------------
 
@@ -195,6 +195,22 @@ CREATE TABLE `orderdetails` (
   `item_ID` int(255) NOT NULL,
   `amount` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`order_ID`, `item_ID`, `amount`) VALUES
+(1, 1, 2),
+(1, 3, 1),
+(2, 2, 1),
+(3, 5, 3),
+(4, 4, 2),
+(4, 7, 1),
+(5, 6, 1),
+(5, 8, 2),
+(6, 9, 1),
+(6, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -211,6 +227,18 @@ CREATE TABLE `orders` (
   `reservation` datetime NOT NULL,
   `completion` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_ID`, `customer_ID`, `employee_ID`, `orderDate`, `table_ID`, `reservation`, `completion`) VALUES
+(1, 1, 1, '2024-05-16 10:30:00', 1, '2024-05-16 10:00:00', 0),
+(2, 2, 2, '2024-05-16 11:45:00', 2, '2024-05-16 11:30:00', 0),
+(3, 3, 3, '2024-05-16 12:15:00', 3, '2024-05-16 12:00:00', 0),
+(4, 4, 4, '2024-05-16 13:00:00', 4, '2024-05-16 12:45:00', 0),
+(5, 5, 5, '2024-05-16 14:30:00', 5, '2024-05-16 14:00:00', 0),
+(6, 1, 6, '2024-05-16 15:00:00', 6, '2024-05-16 14:30:00', 0);
 
 -- --------------------------------------------------------
 
@@ -293,13 +321,13 @@ ALTER TABLE `tables`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -317,13 +345,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `user_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_ID` bigint(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_ID` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tables`

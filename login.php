@@ -53,8 +53,8 @@
         </form>
         <br>
         <!-- Button to navigate to the registration page -->
-        <form action="register.php" method="post">
-            <input type="submit" value="Register">
+        <form style="justify-content: center; display: flex;" action="register.php" method="post">
+            <input style="width: 60%;" type="submit" value="Go to Register">
         </form>
         <br>
         <!-- Button to navigate to the home page -->
@@ -100,20 +100,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<script>alert('Invalid email format');</script>";
         } else {
-            // Query the database to check if the email and password match an existing user
-            $sql = "SELECT user_ID, email FROM login WHERE email='$email' AND password='$password'";
-            $result = $conn->query($sql);
-
-            // If a matching user is found, set session variables and redirect to profile
+            // Prepare and execute the SQL query to check the user's email
+            $sql = $conn->prepare("SELECT user_ID, email, password FROM login WHERE email = ?");
+            $sql->bind_param("s", $email);
+            $sql->execute();
+            $result = $sql->get_result();
+            // If a matching user is found, verify the password
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                $_SESSION['user_ID'] = $row['user_ID'];
-                $_SESSION['email'] = $row['email'];
-                header("Location: profiles.php?user_ID=me");
-                exit();
+                $a = $row['password'];
+                $b = password_verify($password, $row['password']);
+                if (password_verify($password, $row['password'])) {
+                    $_SESSION['user_ID'] = $row['user_ID'];
+                    $_SESSION['email'] = $row['email'];
+                    header("Location: profiles.php?user_ID=me");
+                    exit();
+                } else {
+                    echo "<script>alert('1. ".$b.$password.$a."');</script>";
+                }
             } else {
-                // If no matching user is found, display an error message
-                echo "<script>alert('Invalid email or password');</script>";
+                echo "<script>alert('2. ".$password."');</script>";
             }
         }
     }

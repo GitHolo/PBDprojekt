@@ -57,7 +57,7 @@
         <br>
         <!-- Link to login page -->
         <form style="justify-content: center; display: flex;" action="login.php" method="post">
-            <input style="width: 60%;" type="submit" value="Login">
+            <input style="width: 60%;" type="submit" value="Go to Login">
         </form>
         <br>
         <!-- Link to home page -->
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if all required POST variables are set
     if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['address']) && isset($_POST['phone'])) {
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $name = $_POST['name'];
         $surname = $_POST['surname'];
         $address = $_POST['address'];
