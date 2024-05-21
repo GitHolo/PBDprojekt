@@ -65,7 +65,7 @@
 </body>
 </html>
 
-<?php
+    <?php
 // Start the session to track user information
 session_start(); 
 
@@ -89,40 +89,46 @@ if (isset($_SESSION['user_ID'])) {
     exit();
 }
 
-// Check if the form was submitted
+function set_user_cookie($user_ID) {
+    setcookie("user_ID", $user_ID, time() + (86400 * 30), "/");
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ensure both email and password are provided
-    if(isset($_POST['email']) && isset($_POST['password'])) {
+    if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // Validate the email format
+        // Validate the email format        
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<script>alert('Invalid email format');</script>";
         } else {
-            // Prepare and execute the SQL query to check the user's email
             $sql = $conn->prepare("SELECT user_ID, email, password FROM login WHERE email = ?");
             $sql->bind_param("s", $email);
             $sql->execute();
             $result = $sql->get_result();
+
             // If a matching user is found, verify the password
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                $a = $row['password'];
-                $b = password_verify($password, $row['password']);
                 if (password_verify($password, $row['password'])) {
                     $_SESSION['user_ID'] = $row['user_ID'];
                     $_SESSION['email'] = $row['email'];
+                    set_user_cookie($row['user_ID']);
                     header("Location: profiles.php?user_ID=me");
                     exit();
                 } else {
-                    echo "<script>alert('1. ".$b.$password.$a."');</script>";
+                    echo "<script>alert('Incorrect password');</script>";
                 }
             } else {
-                echo "<script>alert('2. ".$password."');</script>";
+                echo "<script>alert('No user found with this email');</script>";
             }
         }
     }
+} else if (isset($_COOKIE['user_ID'])) {
+    $_SESSION['user_ID'] = $_COOKIE['user_ID'];
+    header("Location: profiles.php?user_ID=me");
+    exit();
 }
 
 // Close the database connection
