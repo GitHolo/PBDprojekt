@@ -33,25 +33,31 @@ session_start(); // Start the session to use session variables
             <div class="inner">
                 
 <?php
+// Database connection credentials
+$servername = "localhost";
+$username = "root";
+$password = ""; 
+$dbname = "htc"; 
+
+// Create connection to the database
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check if the connection to the database failed
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$ID = $_SESSION['user_ID'];
+$sql = "SELECT position_ID FROM employees WHERE user_ID='$ID'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
 // Check if user is logged in and either admin or requesting their own profile
-if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID'] !== 'me')) {
+if (!isset($_SESSION['user_ID']) || ($row['position_ID'] != 1 && $_GET['user_ID'] !== 'me')) {
     echo "<script>alert('Login required');</script>";
     echo "<script>window.location = 'login.php';</script>";
     exit();
 } else {
-    // Database connection credentials
-    $servername = "localhost";
-    $username = "root";
-    $password = ""; 
-    $dbname = "htc"; 
-
-    // Create connection to the database
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check if the connection to the database failed
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Determine user_ID to fetch information for
     if($_GET['user_ID'] == 'me'){
@@ -141,11 +147,16 @@ if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID
 <?php
     echo "<br>";
     // Check if the user's position ID is 1 (admin)
-    $sql = "SELECT position_ID FROM employees WHERE user_ID='$user_ID'";
+    $sql = "SELECT position_ID FROM employees WHERE user_ID='$ID'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        if ($row['position_ID'] == 1) {
+        if ($row['position_ID'] == 1) {?>
+        
+             <form action="edit.php" method="post">
+                <input type="submit" value="Edit this user">
+            </form>
+            <?php
             // Fetch and display a list of all users
             $userListSql = "SELECT 
                 CASE
@@ -175,7 +186,7 @@ if (!isset($_SESSION['user_ID']) || ($_SESSION['user_ID'] != 1 && $_GET['user_ID
             }
             echo "</ul>";
         }
-    }
+    }}
 }
 ?>
                 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
