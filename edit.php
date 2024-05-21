@@ -129,7 +129,7 @@ $conn->close();
 ?>
 
 <?php if (!empty($message)): ?>
-    <p><?php echo $message; ?></p>
+    <script>console.log('<?php echo $message; ?>')</script>
 <?php endif; ?>
 
 <form method="post" action="./profiles.php?user_ID=<?php echo $userID;?>">
