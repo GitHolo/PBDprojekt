@@ -35,15 +35,15 @@
 
     <div class="inner">
         <!-- About Us -->
-        <?php include "./assets/site/header.html";?>
+        <?php include "./assets/site/header.php";?>
 
         <!-- Events -->
-        <?php include "./assets/site/events.html";?>
+        <?php include "./assets/site/events.php";?>
 
         <!-- Testimonials -->
         <?php include "./assets/site/testimonials.html";?>
 
         <!-- Blog -->
-        <?php include "./assets/site/blog.html";?>
+        <?php include "./assets/site/blog.php";?>
     </div>
 </div>

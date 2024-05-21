@@ -19,6 +19,6 @@
 </div>
 
 <!-- Link to read more testimonials -->
-<p class="text-center"><a href="testimonials.html">Read More &nbsp;<i class="fa fa-long-arrow-right"></i></a></p>
+<p class="text-center"><a href="testimonials.php">Read More &nbsp;<i class="fa fa-long-arrow-right"></i></a></p>
 
 <br>

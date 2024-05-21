@@ -22,7 +22,7 @@
     <div id="wrapper">
 
         <!-- Header -->
-        <?php include "./assets/site/mheader.html"; ?>
+        <?php include "./assets/site/mheader.php"; ?>
 
         <!-- Menu -->
         <?php include "./assets/site/menu.php"; ?>

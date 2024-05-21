@@ -43,7 +43,7 @@
     <div id="wrapper">
 
         <!-- Header section included from an external file -->
-        <?php include "./assets/site/mheader.html";?>
+        <?php include "./assets/site/mheader.php";?>
         
         <!-- Menu section included from an external file -->
         <?php include "./assets/site/menu.php";?>

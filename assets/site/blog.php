@@ -32,4 +32,4 @@
 </div>
 
 <!-- This paragraph provides a link to read more. -->
-<p class="text-center"><a href="blog.html">Read More &nbsp;<i class="fa fa-long-arrow-right"></i></a></p>
+<p class="text-center"><a href="blog.php">Read More &nbsp;<i class="fa fa-long-arrow-right"></i></a></p>
