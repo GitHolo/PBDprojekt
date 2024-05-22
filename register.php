@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Register</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./images/papas-pizzeria.jpg">
+
     <link href="assets/css/login.css" rel="stylesheet" />
     <script>
         // Function to validate the email format using a regular expression

@@ -4,6 +4,9 @@
     <title>Login</title>
     <!-- Link to external CSS for styling the login page -->
     <link href="assets/css/login.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="./images/papas-pizzeria.jpg">
+
     <script>
         // Function to validate email format using a regular expression pattern
         function validateEmail(email) {
