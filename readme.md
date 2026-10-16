@@ -1,6 +1,6 @@
 # Project README
 
-Restaurant website "Papas restaurant" by Maksymilian Felczak 
+Restaurant website "Papas restaurant" 
 
 This project encompasses a web application with various components styled using CSS hex values. Below is a breakdown of the colors used and their corresponding purposes:
 
